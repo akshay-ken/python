@@ -14,3 +14,5 @@ if file_open in ['y','n']:
         print('closed and saved')
 
 numbers = [num ** num for num in [1,2,3,4,5] if num % 3 == 0]
+
+print(numbers)
