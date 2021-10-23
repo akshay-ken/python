@@ -1,29 +1,15 @@
-import random
+import requests
 
-while True:
-    hand = str(input()).lower()
+pokemon = input("Enter you favorite pokemon NAME! ")
+pokemon = pokemon.lower()
 
-    if hand == "quit":
-        break
+url = f"https://pokeapi.co/api/v2/pokemon/{pokemon}"
 
-    if hand != 'rock' and hand != 'paper' and hand != 'scissor':
-        print("enter correct input")
-        continue
+req = requests.get(url)
 
-    computer_hand = random.choice(['rock','paper','scissor'])
-    print(f"computer choosed {computer_hand} ")
+data = req.json()
 
-    if computer_hand == hand:
-        print("Tie")
-        continue
-    elif hand == 'paper' and computer_hand =='rock':
-        print("you won")
-        break
-    elif hand == 'rock' and computer_hand =='scissor':
-        print("you won")
-        break
-    elif hand == 'scissor' and computer_hand =='paper':
-        print("you won")
-        break
-    else:
-        print("you lost")
+print(f"The choosed pokemon NAME is {data['name']}")
+print("And this pokemon have abilities of : ")
+for ability in data['abilities']:
+    print(ability['ability']['name'])
