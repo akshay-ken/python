@@ -1,18 +1,24 @@
-filename = input("whats the file name? ")
-content = input("Enter content you want to add")
+class Animal:
+    def __init__(self,fur_color):
+        self.fur_color = fur_color
 
-with open(filename,'w') as file:
-    file.write(content)
+    def eat(self):
+        print('I am eating')
+    def chase(self,name='prey'):
+        print(f'I am chasing a {name}')
 
-file_open = input('enter y or n')
+    def get_a_fur_color(self):
+        print(self.fur_color)
+    
+class HouseAnimal(Animal):
+    def __init__(self, fur_color):
+        super().__init__(fur_color)
+    def speak(self):
+        print('speaking')
+    def chase(self, name='other animal'):
+        super().chase(name)
+        print(f'chased the {name}')
 
-if file_open in ['y','n']:
-    if file_open == 'y':
-        with open(filename,'r') as file:
-            print(file.read())
-    else:
-        print('closed and saved')
-
-numbers = [num ** num for num in [1,2,3,4,5] if num % 3 == 0]
-
-print(numbers)
+newanmial = HouseAnimal('orange')
+print(newanmial.chase())
+print(newanmial.get_a_fur_color())
