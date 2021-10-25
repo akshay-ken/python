@@ -1,21 +1,37 @@
-import requests
+class Bank:
+    def __init__(self,initial_amount = 0.00):
+        self.balance = initial_amount
 
+    def log_transaction(self,log):
+        with open('3.2 readme.txt','a') as file:
+            file.write(f'{log}\n')
+
+    def withdrawal(self,amount):
+        amount = float(amount)
+        if amount:
+            self.balance = self.balance - amount
+            self.log_transaction(amount)
+
+    def deposit(self,amount):
+        amount = float(amount)
+        if amount:
+            self.balance = self.balance + amount
+            self.log_transaction(amount)
+account = Bank(100)
 while True:
-    pokemon = input("Enter you favorite pokemon NAME! ")
-    pokemon = pokemon.lower()
-
-    url = f"https://pokeapi.co/api/v2/pokemon/{pokemon}"
-
-    req = requests.get(url)
-    if pokemon == 'quit':
+    try:
+        action = input('0 for withdrawal and 1 for deposit : ')
+    except KeyboardInterrupt:
+        print(f'\n exiting \n')
         break
-    if req.status_code == 200:
-        data = req.json()
+    if action in ['0','1']:
+        if action == '0':
+            amount = input('Enter amount to withdraw: ')
+            account.withdrawal(amount)
+        else:
+            amount = input('enter amount to be Desposited: ')
+            account.deposit(amount)
 
-        print(f"The choosed pokemon NAME is {data['name']}")
-        print("And this pokemon have abilities of : ")
-        for ability in data['abilities']:
-            print(ability['ability']['name'])
+        print(f'remaining balance: {account.balance}')
     else:
-        print('enter name properly')
-        pokemon = input()
+        print('invalid action')
