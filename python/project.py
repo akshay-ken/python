@@ -3,7 +3,7 @@ class Bank:
         self.balance = initial_amount
 
     def log_transaction(self,log):
-        with open('3.2 readme.txt','a') as file:
+        with open('log.txt','a') as file:
             file.write(f'{log}\n')
 
     def withdrawal(self,amount):
