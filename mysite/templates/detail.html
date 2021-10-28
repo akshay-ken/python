@@ -2,8 +2,12 @@
 {% block title %}Detail View{% endblock  %}
 {% block body %}
     <a href='{% url 'feed:index' %}'>&larr; Go BACK</a>
+
+    <div class='row'>
+    <div class='col-sm-10 offset-sm-1 py-5'>
     <h3>Text:</h3>
     {{object.image}}
     <h3>Image:</h3>
-    <img src='{{object.image.url}}' style='width:100%; height:auto;'
+    <img src='{{object.image.url}}' class='img-fluid'>
+    </div></div>
 {% endblock  %}
